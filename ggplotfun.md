@@ -6,7 +6,8 @@ output:
 
 ---
 
-```{r}
+
+```r
 library('ggplot2')
 r <- read.csv('data/tcors_survey_data.csv')
 
@@ -24,7 +25,8 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
-```{r}
+
+```r
 # TEST plot cig and vap addiction beliefs by week
 ggplot(r_beltaste_wk, aes(x = r_beltaste_wk$week, y = r_beltaste_wk$x)) +
   geom_line(y = r_vapingaddition1_wk$x, colour = "purple") + 
@@ -39,7 +41,10 @@ ggplot(r_beltaste_wk, aes(x = r_beltaste_wk$week, y = r_beltaste_wk$x)) +
   theme_bw()
 ```
 
-```{r}
+![](ggplotfun_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+
+
+```r
 # plot cig and vap addiction beliefs by week
 ggplot(r_beltaste_wk, aes(x = week, y = x)) +
   geom_line(y = r_vapingaddition1_wk$x, colour = "purple") + 
@@ -54,13 +59,16 @@ ggplot(r_beltaste_wk, aes(x = week, y = x)) +
   theme_bw()
 ```
 
+![](ggplotfun_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
 
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
-```{r}
+
+```r
 # TEST plot cig and vap addiction beliefs by week
 ggplot(r_beltaste_wk, aes(x = r_beltaste_wk$week, y = r_beltaste_wk$x)) +
   geom_line(y = r_vapingaddition1_wk$x, colour = "purple") + 
@@ -74,3 +82,5 @@ ggplot(r_beltaste_wk, aes(x = r_beltaste_wk$week, y = r_beltaste_wk$x)) +
   ggtitle("Strength of addiction belief by week for cig and vap") +
   theme_bw()
 ```
+
+![](ggplotfun_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
