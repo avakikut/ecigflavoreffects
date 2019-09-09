@@ -1,5 +1,5 @@
 # classtest_2
-with matt
+e-cigarette flavor project
 
 ## The purpose of this project is to code tweets and texts for content pertaining to e-cigarette flavor, and then assess the association between past 28-day flavor texts and survey-reported belief that e-cigarettes taste good.
 
