@@ -1,0 +1,32 @@
+---
+title: "RandomSamplesLongform&Twitter"
+output:
+  html_document:
+    keep_md: yes
+---
+//Pull Data Files (still need to work on this part)
+LF <- read.csv('data/LFTasteCoded_final.csv')
+Twitter <- read.csv('Users/Ava/Desktop/describing_data_git/classtest_2/data/ecig_no_duplicates_taste_final.csv')
+
+//Longform random sample
+LF <- LFTasteCoded_final
+sum(LFTaste$window_taste)
+LFTaste <- LF[which(LF$window_taste == "1"), ]
+write.table(LFTaste, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste.csv", row.names = FALSE, col.names = T, sep = ",")
+//This only gave me Article IDs. not sure how to do with all columns in final spreadsheet
+LFTaste300 <- sample((LFTaste), size=300, replace=F)
+write.table(LFTaste300, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300.csv", row.names = FALSE, col.names = T, sep = ",")
+
+//Twitter Random Sample
+Twitter<- ecig_no_duplicates_taste_final
+Twittertaste <- Twitter[which(Twitter$taste == "TRUE"), ]
+//This only gave me Article IDs. not sure how to do with all columns in final spreadsheet
+TwitterTaste300 <- sample((Twittertaste$ArticleID), size=300, replace=F)
+write.table(TwitterTaste300, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300.csv", row.names = FALSE, col.names = T, sep = ",")
+
+
+
+```{r}
+unused chunk
+```
+
