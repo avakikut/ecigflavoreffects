@@ -8,11 +8,22 @@ output:
 LF <- read.csv('data/LFTasteCoded_final.csv')
 Twitter <- read.csv('Users/Ava/Desktop/describing_data_git/classtest_2/data/ecig_no_duplicates_taste_final.csv')
 
-//Longform random sample
+//Longform file
 LF <- LFTasteCoded_final
 sum(LFTaste$window_taste)
-LFTaste <- LF[which(LF$window_taste == "1"), ]
+sum(LFTaste$ecig)
+LFTaste <- LFecig[which(LFecig$window_taste == "1"), ]
+LFecig <- LF[which(LF$ecig == "1"), ]
+
+//Describe longform all sources
+table(LFecig$Source)
+
+
 write.table(LFTaste, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste.csv", row.names = FALSE, col.names = T, sep = ",")
+
+summary (LFTaste)
+
+
 //This only gave me Article IDs. not sure how to do with all columns in final spreadsheet
 LFTaste300 <- sample((LFTaste), size=300, replace=F)
 write.table(LFTaste300, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300.csv", row.names = FALSE, col.names = T, sep = ",")
@@ -24,9 +35,29 @@ Twittertaste <- Twitter[which(Twitter$taste == "TRUE"), ]
 TwitterTaste300 <- sample((Twittertaste$ArticleID), size=300, replace=F)
 write.table(TwitterTaste300, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300.csv", row.names = FALSE, col.names = T, sep = ",")
 
+table(LFecig$Source)
+1149/11691
+345/11691
+4069/11691
+6128/11691
+
+CrossTable(LFecig$Source, LFecig$SpecificSourceTitle)
+
+table(LFTaste$Source,LFTaste$SpecificSourceTitle)
+169/2307
+40/2307
+849/2307
+1249/2307
+
 
 
 ```{r}
-unused chunk
-```
+//Describe longform all sources
+table(LFecig$Source)
+table(LFecig$Source,LFcig$SpecificSourceTitle)
+
+//Describe longform flavor by source type and source 
+table(LFTasteSource)
+table(LFTaste$Source,LFTaste$SpecificSourceTitle)
+
 
