@@ -28,8 +28,16 @@ summary (LFTaste)
 LFTaste300 <- sample((LFTaste), size=300, replace=F)
 write.table(LFTaste300, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300.csv", row.names = FALSE, col.names = T, sep = ",")
 lfall <- read.csv("/Users/Ava/Desktop/describing_data_git/classtest_2/data/all_texts_final_2017-Q4.csv")
-//Reduce lf file to article id and article content- cant be done...articlecontent not in file... 
-simplelf <- lfall[,c('ArticleID','ArticleContent')]
+colnames(LFTaste300) <- c("ArticleID")
+//WORKING ON THIS!! loop through final sample df and use API to save ArticleContent
+ArticleContent<- vector(mode='character', length=dim(LFTaste300)[1])
+ArticleTitle<- vector(mode='character', length=dim(LFTaste300)[1])
+for (i in 1:dim(LFTaste300[1]) { h<-GET(paste0("http://apps.asc.upenn.edu/tcors2/api/articles?article_list=",     LFTaste300$ArticleID[i])) h1=content(h)
+  
+  ArticleContent[i]<- as.character(h1[[1]][3])
+  ArticleTitle[i]<- as.character(h1[[1]][2])
+}
+
 
 //Twitter Random Sample
 Twitter<- ecig_no_duplicates_taste_final
