@@ -12,31 +12,31 @@ Twitter <- read.csv('Users/Ava/Desktop/describing_data_git/classtest_2/data/ecig
 LF <- LFTasteCoded_final
 sum(LFTaste$window_taste)
 sum(LFTaste$ecig)
+sum(LFecig$window_taste)
 LFTaste <- LFecig[which(LFecig$window_taste == "1"), ]
 LFecig <- LF[which(LF$ecig == "1"), ]
 
 //Describe longform all sources
 table(LFecig$Source)
-
-
 write.table(LFTaste, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste.csv", row.names = FALSE, col.names = T, sep = ",")
-
 summary (LFTaste)
 
-
-//This only gave me Article IDs. not sure how to do with all columns in final spreadsheet
-LFTaste300 <- sample((LFTaste), size=300, replace=F)
+//Random Sample
+library(httr)
+LFTaste300 = sample(LFecig$ArticleID[which(LFecig$window_taste=="1")],300)
 write.table(LFTaste300, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300.csv", row.names = FALSE, col.names = T, sep = ",")
-lfall <- read.csv("/Users/Ava/Desktop/describing_data_git/classtest_2/data/all_texts_final_2017-Q4.csv")
+LFTaste300 <- read.csv("/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300.csv")
 colnames(LFTaste300) <- c("ArticleID")
-//WORKING ON THIS!! loop through final sample df and use API to save ArticleContent
-ArticleContent<- vector(mode='character', length=dim(LFTaste300)[1])
-ArticleTitle<- vector(mode='character', length=dim(LFTaste300)[1])
-for (i in 1:dim(LFTaste300[1]) { h<-GET(paste0("http://apps.asc.upenn.edu/tcors2/api/articles?article_list=",     LFTaste300$ArticleID[i])) h1=content(h)
-  
-  ArticleContent[i]<- as.character(h1[[1]][3])
-  ArticleTitle[i]<- as.character(h1[[1]][2])
-}
+//pull in and simplify file with all article content 
+metadata<-read_excel("Desktop/describing_data_git/classtest_2/data/ak_window_taste_longform_all_metadata.xlsx")
+view(metadata)
+simplelf<-metadata[,c('ArticleContent','ArticleID', 'ArticleTitle', 'SourceTitle')]
+simplelf<- simplelf[c("ArticleID", "SourceTitle", "ArticleTitle", "ArticleContent")]
+//merge random sample with simplified content file 
+rslf <- merge(LFTaste300, simplelf)
+//save 
+write.table(rslf, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300IDContent.csv", row.names = FALSE, col.names = T, sep = ",")
+LFTaste300IDContent <- rslf
 
 
 //Twitter Random Sample
@@ -46,11 +46,10 @@ Twittertaste <- Twitter[which(Twitter$taste == "TRUE"), ]
 TwitterTaste300 <- sample((Twittertaste$ArticleID), size=300, replace=F)
 write.table(TwitterTaste300, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300.csv", row.names = FALSE, col.names = T, sep = ",")
 
-
 //Reduce twitter file to article id and article content 
 simpletwitter <- Twittertaste[,c('ArticleID','ArticleContent')]
 //Merge random sample file with big file on article id 
-rst <- merge(LFTaste300, simpletwitter, by.x='x', by.y='ArticleID')
+rst <- merge(TwitterTaste300, simpletwitter, by.x='x', by.y='ArticleID')
 colnames(rst) <- c("ArticleID", "ArticleContent")
 write.table(rst, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300IDContent.csv", row.names = FALSE, col.names = T, sep = ",")
 TwitterTaste300IDContent <- read.csv("/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300IDContent.csv")
