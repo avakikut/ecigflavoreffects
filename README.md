@@ -21,3 +21,25 @@ E-cigarette flavor project overview
         *Content over trime 
         *Beliefs over time
         *Predicted proportions 
+        
+3. Random Sampling of Text Files for Thematic coding on qualtrics
+  3.1 Creating sample in r script: ContentDescriptiveStats.Rmd
+    3.1a: Inputs
+     *LFTasteCoded_final.csv (All coded longform articles but no content column)
+     *ak_window_taste_longform_all_metadata.xlsx (all   articles with content columns)
+     *ecig_no_duplicates_taste_final.csv (all tweets coded)
+    3.1b: Outputs
+      *LFTaste.csv (all ecig longform coded for taste)
+      *LFTaste300.csv (random sample of longform coded for taste)
+      *LFTaste300IDContent3.txt (random sample merged with ak_window_taste_longform_all_metadata.xlsx content columns)
+      *TwitterTaste300.csv (random sample of 300 taste tweets)
+       *TwitterTaste300IDContent.txt (Random Sample of 300 taste tweets with article content)
+  3.2: Preparing samples in spyder scripts: ContentDescriptiveStats.RmdTwitterTaste300forQualtrics.py/LFTaste300forQualtrics.py
+     3.2a: Inputs
+       *LFTast300IDContent.txt/TwitterTast300IDContent.txt
+    3.2b: Outputs
+      *LFTaste300_formatted_for_Qualtrics.csv / TwitterTaste300_formatted_for_Qualtrics.csv (random samples with set columns)
+   
+    
+    
+    
