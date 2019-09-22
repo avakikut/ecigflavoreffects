@@ -25,7 +25,7 @@ E-cigarette flavor project overview
 3. Random Sampling of Text Files for Thematic coding on qualtrics
   3.1 Creating sample in r script: ContentDescriptiveStats.Rmd
     3.1a: Inputs
-     *LFTasteCoded_final.csv (All coded longform articles but no content column)
+     *LFTasteCoded_final.csv (All coded longform articles but no content column) 
      *ak_window_taste_longform_all_metadata.xlsx (all   articles with content columns)
      *ecig_no_duplicates_taste_final.csv (all tweets coded)
     3.1b: Outputs
