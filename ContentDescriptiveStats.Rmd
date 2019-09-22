@@ -34,10 +34,22 @@ simplelf<-metadata[,c('ArticleContent','ArticleID', 'ArticleTitle', 'SourceTitle
 simplelf<- simplelf[c("ArticleID", "SourceTitle", "ArticleTitle", "ArticleContent")]
 //merge random sample with simplified content file 
 rslf <- merge(LFTaste300, simplelf)
-//save 
+//save as csv
 write.table(rslf, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300IDContent.csv", row.names = FALSE, col.names = T, sep = ",")
 LFTaste300IDContent <- rslf
+##write to file.
+write.table(LFTaste300IDContent,"/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300IDContent.txt",row.names=F,col.names=T,sep="\t")
 
+##fix space issues.
+ArticleContent<-vector(mode='character',length=dim(rslf)[1])
+ArticleTitle<-vector(mode='character',length=dim(rslf)[1])
+rslf$ArticleContent<-gsub("\t","\ ",rslf$ArticleContent)
+rslf$ArticleContent<-gsub("\r","\ ",rslf$ArticleContent)
+rslf$ArticleContent<-gsub("\n","\ ",rslf$ArticleContent)
+rslf$ArticleContent<-gsub("\ +","\ ",rslf$ArticleContent)
+
+##write to file with spacing issues adjusted
+write.table(rslf,"/Users/Ava/Desktop/describing_data_git/classtest_2/data/LFTaste300IDContent3.txt",row.names=F,col.names=T,sep="\t")
 
 //Twitter Random Sample
 Twitter<- ecig_no_duplicates_taste_final
@@ -53,6 +65,9 @@ rst <- merge(TwitterTaste300, simpletwitter, by.x='x', by.y='ArticleID')
 colnames(rst) <- c("ArticleID", "ArticleContent")
 write.table(rst, "/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300IDContent.csv", row.names = FALSE, col.names = T, sep = ",")
 TwitterTaste300IDContent <- read.csv("/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300IDContent.csv")
+##write to file.
+write.table(TwitterTaste300IDContent,"/Users/Ava/Desktop/describing_data_git/classtest_2/data/TwitterTaste300IDContent.txt",row.names=F,col.names=T,sep="\t")
+
 
 
 
