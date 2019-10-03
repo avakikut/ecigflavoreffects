@@ -1,0 +1,55 @@
+---
+title: "Analysis"
+output:
+  html_document:
+    keep_md: yes
+---
+
+//USE: https://stats.idre.ucla.edu/r/dae/logit-regression/ 
+
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(ggmap)
+library(dplyr)
+library(haven)
+library(aod)
+clusterecontact0724 <- read_dta("Desktop/describing_data_git/classtest_2/data/clusterecontact0724.dta")
+View(clusterecontact0724)
+
+r<- clusterecontact0724
+
+logit
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+summary(r$tastetexts_28day)
+summary(r$tastetweets_28day)
+summary(r$bel_vap_taste2)
+summary(r$vap_ever2)
+summary(r$t2_age_bin2)
+
+mylogit <- glm(taste_agree ~ date + sttastetexts_28day + sttastetweets_28day + sttastetexts_28day*sttastetweets_28day, data =r)
+summary(mylogit)
+exp(cbind(OR = coef(mylogit), confint(mylogit)))
+
+
+```
+
+```{r}
+newdata1 <- with(r, data.frame(sttastetexts_28day= mean(sttastetexts_28day), sttastetweets_28day = mean(sttastetweets_28day), rank = factor(1:3)))
+newdata1 
+
+newdata1$rankP <- predict(mylogit, newdata = newdata1, type = "response")
+
+## view data frame
+newdata1
+```
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+

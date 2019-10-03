@@ -1,0 +1,57 @@
+---
+title: "Analysis"
+output:
+  html_document:
+    keep_md: yes
+---
+
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(ggmap)
+library(dplyr)
+library(haven)
+library(aod)
+clusterecontact0724 <- read_dta("Desktop/describing_data_git/classtest_2/data/clusterecontact0724.dta")
+View(clusterecontact0724)
+
+r<- clusterecontact0724
+
+logit
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+summary(r$tastetexts_28day)
+summary(r$tastetweets_28day)
+summary(r$bel_vap_taste2)
+summary(r$vap_ever2)
+summary(r$t2_age_bin2)
+
+
+
+
+```
+table(r$vap_ever2)
+table(r$t2_age_bin2)
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
