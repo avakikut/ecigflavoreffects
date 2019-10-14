@@ -49,6 +49,7 @@ Specify exactly which analyses you will conduct to examine the main questions/hy
 
 _(Example: State hypothesis 1, then present the analyses to address it)_
 ```{r Hypothesis 1}
+  _The belief that e-cigarettes are addictive will decrease the relationship between the belief that e-cigarettes taste good and intentions to vape among YYAs that have never vaped.  _
 
 mylogit <- glm(r$vap_int_start2 ~ r$bel_vap_control2 + r$bel_vap_taste2 + r$bel_vap_control2 * r$bel_vap_taste2, data =r)
 
