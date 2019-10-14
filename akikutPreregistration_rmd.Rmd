@@ -1,0 +1,87 @@
+---
+title: '[Reducing the Appeal of Flavored E-cigarettes: Does Awareness of E-cigarette Risks Decrease the Relationship between Positive Taste Perceptions and Vaping Decisions among YYAs?]_ecigbeliefs_PreReg#'
+output: pdf_document
+---
+
+##Authors
+
+Example:
+Ava Kikut *(University of Pennsylvania) - ava.kikut@asc.upenn.edu* 
+
+## Name
+Give a title for this pre-registration
+*Reducing the Appeal of Flavored E-cigarettes: Does Awareness of E-cigarette Risks     Decrease the Relationship between Positive Taste Perceptions and Vaping Decisions among YYAs?*
+
+***
+
+## Research goal and rationale
+  Provide a brief abstract (1-2 paragraphs) containing background information motivating your study and describing your research goals and method. 
+  
+*Favorable perceptions of e-cigarette taste has been associated with youth and young adults' (YYAs) vaping decisions. In a previous study, we found that high recent media coverage across multiple sources (Twitter and longform) of flavored products predicted the belief that e-cigarettes taste good measured in a rolling survey of 4470 YYAs over a three year period. Our results suggested that higher news coverage of e-cigarette flavors (mostly covering  their health risks, youth appeal, and related policies) increased the effects of social media (motly promotional and experience sharing). While news coverage may have contributed to the belief that e-cigarettes taste good, it is possible that a focus on risks of vaping in the news might have reduced intention.  In a secondary analysis, we found that flavor-specific coverage on the news was associated with the belief that e-cigarette use leads to substance dependence. This belief has been negatively associated with intentions to vape among YYAs.*
+
+*We are interested in eventually designing campaign messages to combat the influence of flavor perceptions on vaping decisions. Could messages focusing on the risk of developing addiction reduce the appeal of flavored products? To address this larger question, this study assesses whether the belief that e-cigarettes are addictive decreases the relationship between favorable taste perception and intentions to vape among YYAs that have never vaped.* 
+
+
+## Hypotheses
+  What are the main question being asked or hypothesis being tested in this study? 
+  _The belief that e-cigarettes are addictive will decrease the relationship between the belief that e-cigarettes taste good and intentions to vape among YYAs that have never vaped.  _
+  
+
+## Data collection
+  Have any data been collected for this study already?
+
+> It's complicated. We have already collected some data but explain under 'Other' why readers may consider this a valid pre-registration nevertheless.	
+
+#### Dependent variables
+  Describe the key dependent variable(s) specifying how they will be measured.
+  
+_Intention to vape: measured by response to the following question, “How likely is it that you will use an e-cigarette, even one or two puffs, at any time in the next 6 months? Would you say definitely will not, probably will not, probably will, or definitely will?” _
+
+#### Conditions
+  How many and which conditions will participants be assigned to?
+  
+_We have two independent variables for this study. First, the belief that e-cigarette use leads to substance dependence “If I vape or use e-cigarettes every day I will be controlled by vaping” (Agreement scale 1-4). Second, the belief that e-cigarettes taste good “If I vape or use e-cigarettes every day I will enjoy the taste” (Agreement scale 1-4). 
+
+
+
+#### Analyses
+
+Specify exactly which analyses you will conduct to examine the main questions/hypotheses.
+
+_(Example: State hypothesis 1, then present the analyses to address it)_
+```{r Hypothesis 1}
+
+mylogit <- glm(r$vap_int_start2 ~ r$bel_vap_control2 + r$bel_vap_taste2 + r$bel_vap_control2 * r$bel_vap_taste2, data =r)
+
+```
+
+_(Example: State hypothesis 2, then present the analyses to address it)_
+```{r Hypothesis 2}
+
+###Enter code here
+
+```
+
+#### Outliers and Exclusions
+Describe exactly how outliers will be defined and handled, and your precise rule(s) for excluding observations.
+
+_(Example: We will exclude participants who incorrectly answer at least 2 of our 3 attention check questions)_
+
+
+#### Sample Size
+How many observations will be collected or what will determine sample size?
+
+*We plan to use the six-month follow up data from a larger cross-sectional rolling survey of 11,847 YYAs between June 2014 and June 2017. Follow up surveys were conducted between December 17, 2014 and December 9, 2017 with 38% response rate (n=4470). We use the follow up data only because we are interested in evaluating a belief that was not evaluated in the initial survey (that e-cigarettes taste good). Survey data is weighted. In our analysis we will look specifically at YYAs that have never vaped (n=3131)*
+
+## Other
+- Anything else you would like to pre-register? 
+  _(e.g., secondary analyses, variables collected for exploratory purposes, unusual analyses planned?)_
+
+- If you answered "Other" in the Data Collection section, include justification here
+*We have already assessed the relationship between intentions to vape at baseline and vaping behavior at follow up. We have also assessed the relationship between each (of 14) e-cigarette related perceptions evaluated in the survey and intentions to vape. We know that favorable taste perceptions were positively associated with intentions and addiction perceptions were negatively associated with intentions. However, we have not tested the interactive effect of these perceptions.*
+
+- Is this registration associated with the same project as any other registrations? 
+ _(if gathering preregistrations on a study GitHub page, could give that link here; or otherwise link to the other preregistrations)_
+
+
+
