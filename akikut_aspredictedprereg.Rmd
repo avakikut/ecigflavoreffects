@@ -1,7 +1,8 @@
 ---
-title: '[Reducing the Appeal of Flavored E-cigarettes: Does Awareness of E-cigarette Risks Decrease the Relationship between Positive Taste Perceptions and Vaping Decisions among YYAs?]_ecigbeliefs_PreReg2#'
+title: '[Reducing the Appeal of Flavored E-cigarettes: Does Awareness of E-cigarette Risks Decrease the Relationship between Positive Taste Perceptions and Vaping Decisions among YYAs?]_ecigbeliefs_PreReg#'
 output: pdf_document
-  html_document:
+  html_document:git status
+  
     keep_md: yes
 
 ---
