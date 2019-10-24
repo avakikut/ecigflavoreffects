@@ -21,6 +21,8 @@ r <- clusterecontact0724
 2. Generate binary belief measures
 3. keep only date, belief measures, content measures, vaping experience, and age group 
 ```{r}
+y<- r %>% select(bel_vap_taste2, taste_agree, vap_ever2, t2_age_bin2, tastetexts_28day, tastetweets_28day, sttastetexts_28day, sttastetweets_28day, lflevel_bin) 
+
 ```
 
 _Describe main variables_
@@ -39,7 +41,8 @@ prop.table(mytable3)
 _Correlations_
 library(Hmisc)
 ```{r}
-rcorr(r$tastetexts_28day, r$tastetweets_28day)
+cor(y %>% select(sttastetexts_28day, sttastetweets_28day, bel_vap_taste2, vap_ever2, t2_age_bin2) %>% na.omit())
+
 ```
 _Conduct Analyses_
 1. Assess effects of content on belief
@@ -49,8 +52,8 @@ _Conduct Analyses_
 
 
 ```{r}
-r$lflevel_bin <- factor(r$lflevel_bin)
-mylogit <- glm(taste_agree ~ sttastetweets_28day + lflevel_bin, data = r)
+y$lflevel_bin <- factor(y$lflevel_bin)
+mylogit <- glm(taste_agree ~ sttastetweets_28day + lflevel_bin + sttastetweets_28day * lflevel_bin  data = y)
 mylogit
 summary(mylogit)
 confint(mylogit)
@@ -58,14 +61,18 @@ confint.default(mylogit)
 exp(coef(mylogit))
 exp(cbind(OR = coef(mylogit), confint(mylogit)))
 
-newdata1 <- with (r, data.frame(sttastetweets_28day = mean(sttastetweets_28day), lflevel_bin = factor(1:2)))
+
+
+
+newdata1 <- with (r, data.frame(sttastetweets_28day = mean(sttastetweets_28day), lflevel_bin = factor(0:1)))
 
 newdata1$lflevel_binP <- predict(mylogit, newdata = newdata1, type = "response")
-####STOPPED HERE...###
 newdata1
 
-newdata2 <- with(mydata, data.frame(gre = rep(seq(from = 200, to = 800, length.out = 100),
-    4), gpa = mean(gpa), rank = factor(rep(1:4, each = 100))))
+summary(r$sttastetexts_28day)
+
+newdata2 <- with(r, data.frame(sttastetweets_28day = rep(seq(from = -1, to = 4.5, length.out = .5),
+    2), lflevel_bin= factor(rep(0:1, each = .5))))
 
 newdata3 <- cbind(newdata2, predict(mylogit, newdata = newdata2, type = "link",
     se = TRUE))
@@ -83,6 +90,9 @@ ggplot(mylogit, aes(x = r$sttastetweets_28day, y = PredictedProb)) + geom_ribbon
   a. create high and low groups for content variables
   b. run analysis with groups
   c. predicted values graphs
+  ##Jake's ggplot##
+    ggplot(dataframe, aes(x = tweets, y= prop, colot = longform)) + geom_smooth(method='lm') + stat_summmary(fun.data='mean_cl_bloot', size =1) 
+  
 3. Other analyses
   a. age as potential moderator (ordinal logistic regression)
   b. vaping experience as potential moderator (ordinal logistic regression)
