@@ -61,7 +61,7 @@ exp(cbind(OR = coef(mylogit), confint(mylogit)))
 newdata1 <- with (r, data.frame(sttastetweets_28day = mean(sttastetweets_28day), lflevel_bin = factor(1:2)))
 
 newdata1$lflevel_binP <- predict(mylogit, newdata = newdata1, type = "response")
-####STOPPED HERE...still working on this###
+####STOPPED HERE...###
 newdata1
 
 newdata2 <- with(mydata, data.frame(gre = rep(seq(from = 200, to = 800, length.out = 100),
