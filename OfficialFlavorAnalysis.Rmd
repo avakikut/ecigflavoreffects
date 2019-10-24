@@ -1,0 +1,117 @@
+---
+title: "FlavorAnalysis_official"
+output: html_document
+---
+_Describe Content_
+1. Import flavor text data
+2. Import flavor tweet data
+3. Describe content data
+
+_Import Survey Data_
+1. Apply survey weights
+2. Keep recontact survey data
+
+_Merge survey and content data_
+1. Aggregate content data for text and twitter
+2. Combine text, twitter, and survey data
+
+_Create dataframe with necessary variables for analysis_
+r <- clusterecontact0724
+1. Standardize content measures
+2. Generate binary belief measures
+3. keep only date, belief measures, content measures, vaping experience, and age group 
+```{r}
+```
+
+_Describe main variables_
+```{r}
+summary(r$tastetexts_28day)
+summary(r$tastetweets_28day)
+summary(r$bel_vap_taste2)
+mytable<-table(r$bel_vap_taste2)
+prop.table(mytable)
+mytable2<-table(r$vap_ever2)
+prop.table(mytable2)
+mytable3<-table(r$t2_age_bin2)
+prop.table(mytable3)
+```
+
+_Correlations_
+library(Hmisc)
+```{r}
+rcorr(r$tastetexts_28day, r$tastetweets_28day)
+```
+_Conduct Analyses_
+1. Assess effects of content on belief
+  a. ordinal logistic regression: main effects model (no interaction)
+  b. ordinal logistic regression: interaction model 
+  c. logistic regression with binary belief measure
+
+
+```{r}
+r$lflevel_bin <- factor(r$lflevel_bin)
+mylogit <- glm(taste_agree ~ sttastetweets_28day + lflevel_bin, data = r)
+mylogit
+summary(mylogit)
+confint(mylogit)
+confint.default(mylogit)
+exp(coef(mylogit))
+exp(cbind(OR = coef(mylogit), confint(mylogit)))
+
+newdata1 <- with (r, data.frame(sttastetweets_28day = mean(sttastetweets_28day), lflevel_bin = factor(1:2)))
+
+newdata1$lflevel_binP <- predict(mylogit, newdata = newdata1, type = "response")
+####STOPPED HERE...still working###
+newdata1
+
+newdata2 <- with(mydata, data.frame(gre = rep(seq(from = 200, to = 800, length.out = 100),
+    4), gpa = mean(gpa), rank = factor(rep(1:4, each = 100))))
+
+newdata3 <- cbind(newdata2, predict(mylogit, newdata = newdata2, type = "link",
+    se = TRUE))
+newdata3 <- within(newdata3, {
+    PredictedProb <- plogis(fit)
+    LL <- plogis(fit - (1.96 * se.fit))
+    UL <- plogis(fit + (1.96 * se.fit))
+})
+
+ggplot(mylogit, aes(x = r$sttastetweets_28day, y = PredictedProb)) + geom_ribbon(aes(ymin = LL,
+    ymax = UL, fill = rank), alpha = 0.2) + geom_line(aes(colour = rank),
+    size = 1)
+```
+2. Produce graph
+  a. create high and low groups for content variables
+  b. run analysis with groups
+  c. predicted values graphs
+3. Other analyses
+  a. age as potential moderator (ordinal logistic regression)
+  b. vaping experience as potential moderator (ordinal logistic regression)
+  c. sensitivity analyses for overall content on taste belief (ordinal logistic regression)
+  d. sensitivity analyses for other beliefs (13 ordinal logistic regressions)
+4. Content themes
+  a. random sample selection
+  b. import coded content
+  c. table of proportions for each theme 
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
