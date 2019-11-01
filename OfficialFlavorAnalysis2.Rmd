@@ -1,0 +1,104 @@
+---
+output:
+  pdf_document: default
+  output: pdf_document
+  html_document: default
+  word_document: default
+title: "FlavorAnalysis_official"
+---
+_Incomplete Code for Flavor Terms_
+
+1. Code Twitter 
+```{}
+script: 1a. Twitter_regex_coding_fromCSV_taste.py
+```
+
+2. Code Longform 
+```{}
+script: 1b. Ava_WINDOWLongFormTasteScript_ALL_06.24.19.py
+```
+
+_Describe Content and pull random samples_
+
+```{}
+script: 2. ContentDescriptiveStats.Rmd
+Output: Table 1 (frequencies)
+Broadcast news (3.0%)
+AP (9.8%)
+Newspapers (34.8%)
+Websites (52.4%)
+```
+_Merge survey and content data_
+
+1. Create past 28-day content measure for total content and flavor content on each source (4 measures) 
+```{}
+script: 3. TasteContentAggregating.r
+```
+
+2. Merge with survey data (create file with 4 content measures + recontact survey data only) 
+```{}
+script: 4. Mergesurveycontentvariables.do
+```
+3. Conduct split-half analysis for flavor content 
+```{}
+folders: 5. SpitlhalfTasteLF / SplithalfTasteTwitter
+```
+
+_Preliminary and main analysis_
+
+```{}
+script: TasteanalysisScript.do
+Ouput: Table 3, 4, Figure 1
+
+Table 3.
+Univariate information for all variables (12/14/2014-12/17/2017)
+Variable	Average/Frequency
+Content Measures	
+Recent Daily E-Cigarette Flavor Longform Texts, M (SD)	1.54 (0.88)
+Recent Daily E-Cigarette Flavor Tweets, M (SD)	798.00 (266.15)
+	
+Survey Measures 	
+Agreement E-Cigarettes Taste Good (Scale 1-4), M (SD)	2.44 (0.72)
+1. Strongly Disagree (%)	9.74
+2. Disagree (%)	40.17
+3. Agree (%)	46.02
+4. Strongly Agree (%)	4.07
+	
+Has Vaped (%)	28.74
+Adolescent (13-17 years old) (%)	55.51
+Young adult (18-26 years old) (%)	44.49
+
+Table 4. 
+
+Ordinal logistic regression results: association of recent flavor coverage on strength of belief that e-cigarettes taste good (1-4 scale)*
+Predictor	Odds Ratio: Main Effects Model	95% CI	Odds Ratio: Model with Source Interaction	95% CI
+Interview Date (from 1-1013)	1.00	1.00, 1.00	1.00	1.00, 1.00
+Recent Longform E-cigarette Flavor Coverage (L)**	1.04	0.95, 1.13	1.02	0.94, 1.11
+Recent Twitter E-cigarette Flavor Coverage (T)**	1.00	0.91, 1.09	1.06	0.96, 1.16
+Source Coverage Interaction (L X T)	--	--	1.21	1.04, 1.41
+Cut 1	2.25	-3.48, 7.97	1.68	-4.04, 7.40
+Cut 2	4.43	-1.29, 10.15	3.87	-1.85, 9.58
+Cut 3	7.55	1.83, 13.28	6.99	1.28, 12.71
+Notes. N=4,369; Boldface indicates significant results (p<.05)
+*1=Disagree, 2=Disagree, 3=Agree, 4=Strongly Agree 
+** Standardized past 28-day average; Boldface indicates significant results (p<.05)
+
+
+```
+
+_Flavor themes coding and reliability checks_
+
+```{}
+folders: TasteReliability check 
+
+Output: Table 2
+
+Table 2.
+
+E-Cigarette flavor content themes on Twitter and longform sources
+Theme	Twitter Proportion (95% CI) (N=293)	Longform Proportion (95% CI) (N=166)
+Promotion	.66 (.61 - .71)	.03 (0.0 - .06)
+Policy	.02 (.01 - .04)	.64 (.57 - .72)
+Youth Appeal	.02 (.01 - .04)	.52 (.44 - .59)
+Health Risks	.04 (.02 - .07)	.21 (.15 - .27)
+Normative Description	.26 (.21 - .31)	.22 (.15 - .28)
